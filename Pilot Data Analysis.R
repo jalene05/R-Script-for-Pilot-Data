@@ -11,7 +11,7 @@ dat <- dat[-c(1),]
 dat <- dat %>%
   select(participant, hitPercent, pointsGiven, horOrTilt, hitOrMiss, trialType, trialsNum, tasksNum, wallOrient, Sound)
 
-# Outlier analysis - Exclude participants who missed the ball 50% or less of the time
+# Outlier analysis - Exclude participants who missed the ball 50%+ of the time
 dat = dat %>% group_by(participant) %>%
   mutate(hitPercent2 = mean(hitOrMiss == "hit",na.rm = TRUE))  %>%
   filter(hitPercent2 > 0.5)
